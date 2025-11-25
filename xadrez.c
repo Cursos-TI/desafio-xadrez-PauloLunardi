@@ -1,128 +1,61 @@
 #include <stdio.h>
 
-// Desafio Nivel: Aventureiro
-// Adição da jogada do cavalo
-// Adição do menu de seleção para o jogador decidir a jogada do cavalo
- 
-int main() {
-    int jogada, jog_cavalo;
-    int b = 0;
-    int r = 0;
-    int mov_cavalo = 1;
-   
-   
-    // Cria o Menu inicial para selecionar a jogada
-    printf("Selecione a Jogada:\n");
-    printf("1. Mover Torre \n");
-    printf("2. Mover Bispo \n");
-    printf("3. Mover Rainha \n");
-    printf("4. Mover Cavalo \n");
-    printf("5. Sair\n");
-    printf("Escolha uma Jogada: \n");
-    scanf("%d", &jogada);
-       
-    switch(jogada) {
-        // Execulta o movimento da Torre
-        case 1:
-        printf("Você Selecionou mover Torre \n");
+// Desafio Nivel: Mestre
+// Adição da jogada com recursividade
+// Adição do Loops Complexos para o Cavalo
+// Adição de Loops Aninhado + Repercursivo para o Bispo
 
-        for(int i = 0; i < 5; i++){
-            printf("Cima\n"); // Imprime a direção da jogada  
-        }   
-        break;
+void mover_torre(int casas){
+    //printf("Você Selecionou mover Torre \n");
+    if(casas > 0){
+        printf("Direita \n");
+        mover_torre(casas - 1);
+    }
+};
 
-        // Execulta o movimento do Bispo
-        case 2:
-            printf("Você Selecionou mover Bispo \n");
+// Conforme Requisitos Funcionais especificados:
+void mover_bispo(int casas){
+    if(casas <= 0){
+        return;
+    }
 
-            while (b < 5){
-
-            printf("Cima \n");
-            printf("Direita \n");
-            b++;
+    // faz o movimento lateral
+    for(int j = 0; j < 1; j++){
+            printf("Direita ");
         }
-        
-        break;
 
-        // Execulta o movimento da Rainha
-        case 3: 
-            printf("Você Selecionou mover Rainha \n");
+    // Movimento para cima
+    printf("Cima \n");
+    
+    // Continuação da Repercursão
+    mover_bispo(casas - 1);
+}
 
-            do { 
-            printf("Esquerda\n");
-            r++;
-        
-            } while (r < 8);
-        break;
+void mover_rainha(int casas){
+    // printf("Você Selecionou mover Rainha \n");
+    if (casas > 0){
+        printf("Esquerda\n");
+        mover_rainha(casas - 1);
+    } 
+}
 
-        // Execulta o movimento do Cavalo
-        case 4: 
-            printf("Você Selecionou mover o Cavalo \n");
+void mover_cavalo(int mov_cima, int mov_dir) {
 
-            printf("Selecione qual movimento quer realizar \n");
-            printf("1. Para cima e para esquerda \n");
-            printf("2. Para cima e para direita \n");
-            printf("3. Para baixo e para esquerda \n");
-            printf("4. Para baixo e para direita \n");
+    // Movimento para cima
+    for(int i = 0; i < mov_cima; i++){
+        printf("Cima ");
+    }
 
-            printf("Escolha o movimento para o cavalo realizar: \n");
-            scanf("%d", &jog_cavalo);
+    // Movimento para direita
+    for(int j = 0; j < mov_dir; j++){
+        printf("Direita ");
+    }
+}
 
-            switch(jog_cavalo) {
-            // Execulta a jogada cavalo para cima e esquerda
-                case 1:
-                    while(mov_cavalo--){
-                        for (int c = 0; c < 2; c++){
-                        printf("Cima "); // Imprime "Cima" duas vezes
-                    }
-                    printf("Esquerda");
-                    }
-                break;
-
-                // Execulta a jogada cavalo para cima e direita
-                case 2:
-                    while(mov_cavalo--){
-                        for (int c = 0; c < 2; c++){
-                        printf("Cima "); // Imprime "Cima" duas vezes
-                    }
-                    printf("Direita");
-                    }
-                break;
-
-                // Execulta a jogada cavalo para baixo e esquerda
-                case 3:
-                    while(mov_cavalo--){
-                        for (int c = 0; c < 2; c++){
-                        printf("Baixo "); // Imprime "baixo" duas vezes
-                    }
-                    printf("Esquerda");
-                    }
-                break;
-
-                // Execulta a jogada cavalo para baixo e direita
-                case 4:
-                    while(mov_cavalo--){
-                        for (int c = 0; c < 2; c++){
-                        printf("Baixo "); // Imprime "baixo" duas vezes
-                    }
-                    printf("Direita");
-                    }
-                break;
-
-                default:
-                    printf("Opção inválida!\n");
-                }
-
-        break;
-
-        // Execulta a saída do jogo!
-        case 5:
-            printf("Saindo do Jogo!.... \n");
-        break;
-
-        default:
-            printf("Opção inválida!\n");
-        }
-   
-    return 0;
+int main() { 
+    //mover_torre(4);
+    mover_bispo(5);
+    //mover_rainha(8);
+    //mover_cavalo(5, 2);
+   return 0;
 }
